@@ -1,0 +1,4 @@
+default:
+  attendance_loc: "\\Office for National Statistics\\Data Quality Hub - Quality_Champions_ONS\\1. Admin\\4. Attendance"
+  staff_counts_loc: "\\Office for National Statistics\\People Analytics - Monthly Outputs for Reggie\\Staffcounts\\2023-2024"
+
