@@ -1,3 +1,8 @@
+#Next two lines run only the first time:
+# take out hash tag to run them ( then put it back in)
+#install.packages("tidyverse")
+#install.packages("config")
+
 
 library(tidyverse)
 
@@ -13,7 +18,8 @@ attendance_data <-   list.files(path = paste0(username,
         config[["attendance_loc"]],
         .,
         sep = "\\") %>%
-  readxl::read_excel()
+  readxl::read_excel() %>%
+  mutate(Email = tolower(Email))
 
 
 if (dim(attendance_data)[2] > 1) {
@@ -32,8 +38,8 @@ if (dim(attendance_data)[2] > 1) {
 
   } else {
 
-    staff <- list.files(path = config[["staff_counts_loc"]]) %>%
-      dplyr::last() %>%
+    staff <- list.files(path =  paste0(username, config[["staff_counts_loc"]])) %>%
+      dplyr::first() %>%
       paste(username,
             config[["staff_counts_loc"]],
             .,
@@ -47,8 +53,7 @@ if (dim(attendance_data)[2] > 1) {
 
 #Staff Counts
 
-  staff <- list.files() %>%
-    str_subset('.xlsx') %>%
+  staff <- staff %>%
     readxl::read_excel(sheet = 2) %>%
     janitor::clean_names() %>%
     select(primary_email_address,
@@ -58,9 +63,10 @@ if (dim(attendance_data)[2] > 1) {
 
 
 
+
 # Minutes
 
-outcome <- merge(emails, staff, all.x = TRUE) %>%
+outcome <- merge(attendance_data, staff, all.x = TRUE) %>%
   arrange(division)
 
 
