@@ -70,6 +70,11 @@ outcome <- merge(attendance_data, staff, all.x = TRUE) %>%
   arrange(division)
 
 
-writexl::write_xlsx(outcome, paste0(attendance_data_str,
-                                   "//",
-                                   tt))
+writexl::write_xlsx(outcome, paste0(username,
+                                     config[["attendance_loc"]],
+                                    "\\",
+                                     "emails_attendance.xlsx"))
+
+
+
+
