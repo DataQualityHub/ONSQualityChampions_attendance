@@ -1,8 +1,3 @@
-#Next two lines run only the first time:
-# take out hash tag to run them ( then put it back in)
-#install.packages("tidyverse")
-#install.packages("config")
-
 
 library(tidyverse)
 
