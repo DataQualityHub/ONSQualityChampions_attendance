@@ -34,7 +34,8 @@ if (dim(attendance_data)[2] > 1) {
   } else {
 
     staff <- list.files(path =  paste0(username, config[["staff_counts_loc"]])) %>%
-      dplyr::first() %>%
+      str_subset('.xlsx') %>%
+      dplyr::last() %>%
       paste(username,
             config[["staff_counts_loc"]],
             .,
@@ -49,11 +50,11 @@ if (dim(attendance_data)[2] > 1) {
 #Staff Counts
 
   staff <- staff %>%
-    readxl::read_excel(sheet = 2) %>%
+    readxl::read_excel() %>%
     janitor::clean_names() %>%
-    select(primary_email_address,
+    select(email_address,
            division) %>%
-    dplyr::rename(Email = primary_email_address) %>%
+    dplyr::rename(Email = email_address) %>%
     mutate(Email = tolower(Email))
 
 
