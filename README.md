@@ -1,7 +1,7 @@
 # ONS Quality Champions
 
-Author: Margarita Tsakiridou
-Last updated: 26/02/2024
+- Author: Margarita Tsakiridou
+- Last updated: 26/02/2024
 
 This code writes a workbook in the DQHub Champions SharePoint folder. The workbook has
 the emails of attendees to a meeting and the division they belong to. The output can 
